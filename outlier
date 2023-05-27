@@ -20,3 +20,27 @@ def OutlierFinder(data):
    olist.append(innerlist)    
    len(olist)     
 #This code can find outlier for any dataset
+#Treating the outlier
+def OutlierTreatment(df,method="minmax"):
+ Numeric=[cat for cat in df.columns if df[cat].dtype!="object"]
+ for i in df[Numeric]:
+   IQR=df[i].quantile(0.75)-df[i].quantile(0.25)
+   uo=df[i].quantile(0.75)+1.5*IQR
+   lo=df[i].quantile(0.25)-1.5*IQR
+   if uo!=lo:
+    if method=="minmax":
+     for j in df[i]:
+       if j>uo:
+        df[i].replace(j,uo,inplace=True)
+       elif j<lo:
+        df[i].replace(j,uo,inplace=True)
+    elif method=="median":
+      for j in df[i]:
+       if j>uo or j<lo:
+        df[i].replace(j,round(df[i].median(),2),inplace=True)
+    elif method=="leave":
+      pass  
+    '''elif method=="remove":
+      for j in df[i]:
+       if j>uo or j<lo:
+         df[i].drop(axis=0,inplace=True)'''
