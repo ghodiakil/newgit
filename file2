@@ -1,0 +1,19 @@
+def CategoryNumeric(df):
+  category=[cat for cat in df.columns if df[cat].dtype=="object"]
+  if len(category)>1:
+    print("There are",len(category),"Categorical variables in data.")
+    print("The categorical variables are",category)
+  elif len(category)==1:
+    print("There is only",len(category),"Categorical variable in data.")  
+    print("The categorical variable is",category)
+  else:
+    print("No categorical variables in the data.")  
+  Numeric=[cat1 for cat1 in df.columns if df[cat1].dtype!="object"]
+  if len(Numeric)>1:
+   print("There are",len(Numeric),"Numerical variables in data.")
+   print("The Numerical variables are",Numeric)
+  elif len(Numeric)==1:
+   print("There is only",len(Numeric),"Numerical variable in data.")
+   print("The Numerical variable is",Numeric) 
+  else:
+    print("No categorical variables in data.")
