@@ -1,0 +1,21 @@
+def OutlierFinder(data):
+  Numeric=[cat for cat in data.columns if data[cat].dtype!="object"]
+  #ul=[];ll=[];
+  olist=[]
+  for i in Numeric:
+   innerlist=[]
+   IQR=data[i].quantile(0.75)-data[i].quantile(0.25)
+   #print("Interquartile range of",i,"is",IQR)
+   a=data[i].quantile(0.75)+1.5*(IQR)
+   #ul.append(a)
+   b=data[i].quantile(0.25)-1.5*(IQR)
+   #ll.append(b)
+   print("All the values above",round(a,2),"and below",round(b,2),"are outliers in",i,"variable.")
+   for j in list(data[i].values):
+     if (j<b or j>a):
+      innerlist.append(j)
+   #print("List of outliers in",i)   
+   #print(innerlist)
+   print("Number of outliers present in",i,":",len(innerlist),".") 
+   olist.append(innerlist)    
+   len(olist)     
