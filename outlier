@@ -19,3 +19,4 @@ def OutlierFinder(data):
    print("Number of outliers present in",i,":",len(innerlist),".") 
    olist.append(innerlist)    
    len(olist)     
+#This code can find outlier for any dataset
